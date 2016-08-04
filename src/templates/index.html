@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Emojify</title>
+  <link rel=stylesheet type=text/css href="static/style.css">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<body>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : 'your-app-id',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <div class="container">
+    <div class="header">
+      <img src="static/emojify2.jpg" width="300px"/>
+      <p>English to emoji translations</p>
+    </div>
+    <div class="content">
+      <div class="input">
+        <form method="post" action="{{url_for('translate')}}" name="inputtext" >
+          <h2>From:</h2>
+          <textarea name="inputtext" class="inputtext displaybox" placeholder="Type anything here!">{{originaltext}}</textarea>
+          <input type="submit" value="Translate!"/>
+        </form>
+      </div>
+
+      <div class="output">
+        <form>
+          <h2>Emoji Translation:</h2>
+          <textarea class="displaybox">{{translation}}</textarea>
+        </form>
+      </div>
+    </div>
+
+    <div id="share">
+      <h2 style="font-size: 12pt"> Share your translation: </h2>
+
+      <table>
+        <tr>
+          <td> <div class="fb-share-button" data-href="http://emojifyapp.herokuapp.com/" data-layout="button" data-mobile-iframe="true"></div> </td>
+
+          <td><a class="twitter-share-button" href='https://twitter.com/intent/tweet?text={{translation}}%20"{{originaltext}}".%20Translated%20by&url=none&hashtags=emojify'>Tweet</a></td>
+
+          <td><a href='http://www.tumblr.com/share/link?url=http://emojifyapp.herokuapp.com/translate&amp;name=emojify&amp;description={{translation}}%20"{{originaltext}} ".%20Translated%20by%20emojify'><img style="width: 25px" src="https://simplesharebuttons.com/images/somacro/tumblr.png" alt="Tumblr" /></a></td>
+
+          <td><div class="google-plus-share"><g:plus  action="share"></g:plus></div></td>
+        </tr>
+      </table>
+
+    </div>
+
+
+    
+  </div>
+  <div id="credits">
+    <p> 
+      Created by Diane Liu, Colin Mo, Dara Rubin and Chenhui Zhou <br>May 2016 
+    </p>
+  </div>
+
+</div>
+
+
+</body>
+</html>
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+  t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
+
